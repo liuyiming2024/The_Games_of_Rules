@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>动物园规则怪谈 - 交互探索版</title>
+    <title>动物园规则怪谈 - 胆小者勿入</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap');
         
         :root {
             --primary-color: #8b0000;
             --secondary-color: #4fc3f7;
-            --bg-color: #f5ecd7;
-            --paper-color: #fefcf5;
-            --border-color: #d4c9af;
+            --bg-color: #0a0a0a;
+            --paper-color: #1a1a1a;
+            --border-color: #333;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444;
         }
         
         * {
@@ -22,225 +24,290 @@
         }
         
         body {
-            font-family: 'Courier Prime', monospace;
+            font-family: 'Special Elite', cursive;
             background-color: var(--bg-color);
-            color: #3a3225;
+            color: var(--text-color);
             line-height: 1.6;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4c9af' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
             display: flex;
             height: 100vh;
             overflow: hidden;
+            position: relative;
         }
         
-        .start-screen {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* 恐怖背景效果 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--paper-color);
-            padding: 20px;
-            text-align: center;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(28, 58, 112, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(28, 58, 112, 0.1) 0%, transparent 20%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23333' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.7;
+            z-index: -1;
         }
         
-        .game-title {
-            font-size: 3em;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        /* 闪烁的红色灯光效果 */
+        @keyframes redFlash {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
         }
         
-        .game-subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 40px;
-            max-width: 600px;
-            line-height: 1.8;
+        .red-flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.3) 0%, transparent 70%);
+            animation: redFlash 4s infinite;
+            pointer-events: none;
+            z-index: -1;
         }
         
-        .start-options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 300px;
+        /* 恐怖边框效果 */
+        .blood-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 95%, var(--accent-color) 100%),
+                linear-gradient(180deg, transparent 95%, var(--accent-color) 100%),
+                linear-gradient(270deg, transparent 95%, var(--accent-color) 100%),
+                linear-gradient(0deg, transparent 95%, var(--accent-color) 100%);
+            background-size: 10px 10px;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0.7;
         }
         
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            font-family: 'Courier Prime', monospace;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 5px;
-        }
-        
-        .btn:hover {
-            background-color: #a00000;
-            box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            color: #333;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #29b6f6;
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
+        /* 新布局样式 */
         .game-container {
             display: flex;
             width: 100%;
             height: 100%;
+            position: relative;
         }
         
-        .sidebar {
-            width: 300px;
-            background-color: var(--paper-color);
-            border-right: 1px solid var(--border-color);
-            padding: 20px;
-            overflow-y: auto;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        }
-        
+        /* 主内容区 */
         .main-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            position: relative;
+            padding: 20px;
         }
         
-        .header {
-            padding: 15px 20px;
-            background-color: var(--paper-color);
-            border-bottom: 1px solid var(--border-color);
+        /* 右上角小地图 */
+        .mini-map {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 150px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            z-index: 10;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .mini-map-title {
+            font-size: 0.9em;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        .mini-map-content {
+            width: 100%;
+            height: calc(100% - 20px);
+            background-color: rgba(40, 40, 40, 0.8);
+            border-radius: 3px;
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 5px;
+        }
+        
+        .map-area-mini {
+            width: 30%;
+            height: 40%;
+            margin: 1.5%;
+            background-color: rgba(60, 60, 60, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            cursor: pointer;
+            transition: all 0.3s;
         }
         
-        h1 {
-            margin: 0;
-            color: var(--primary-color);
-            font-size: 1.8em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .map-area-mini:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
         }
         
-        .subtitle {
-            margin: 5px 0 0;
-            font-style: italic;
-            color: #666;
+        .map-area-mini.current {
+            background-color: rgba(139, 0, 0, 0.3);
+            border-color: var(--accent-color);
         }
         
+        /* 侧边栏 */
+        .sidebar {
+            width: 300px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border-left: 1px solid var(--border-color);
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar.collapsed {
+            transform: translateX(100%);
+        }
+        
+        /* 侧边栏箭头 */
+        .sidebar-toggle {
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 40px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--accent-color);
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-toggle:hover {
+            background-color: rgba(40, 40, 40, 0.9);
+        }
+        
+        /* 右下角设置按钮 */
+        .settings-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--accent-color);
+            font-size: 1.2em;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        
+        .settings-button:hover {
+            background-color: rgba(40, 40, 40, 0.9);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+        
+        /* 设置模态框 */
+        .settings-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .settings-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .settings-content {
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(26, 26, 26, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+        
+        .settings-title {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Creepster', cursive;
+        }
+        
+        /* 内容区样式 */
         .content-area {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .rules-section {
-            margin-bottom: 25px;
-        }
-        
-        .section-title {
-            font-size: 1.3em;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
-        
-        .rule {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-left: 3px solid var(--primary-color);
-        }
-        
-        .rule-number {
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-right: 5px;
-        }
-        
-        .warning {
-            background-color: rgba(255, 240, 240, 0.8);
-            border-left: 3px solid #ff0000;
-        }
-        
-        .warning .rule-number {
-            color: #ff0000;
-        }
-        
-        .triggered-rule {
-            background-color: rgba(79, 195, 247, 0.1);
-            animation: highlight 2s;
-        }
-        
-        @keyframes highlight {
-            0% { background-color: rgba(79, 195, 247, 0.5); }
-            100% { background-color: rgba(79, 195, 247, 0.1); }
-        }
-        
-        .map-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .zoo-map {
-            max-width: 100%;
-            height: auto;
-            border: 2px solid var(--border-color);
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .area-info {
-            background-color: var(--paper-color);
-            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: relative;
+            margin-top: 20px;
             border: 1px solid var(--border-color);
             border-radius: 5px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .area-title {
-            font-size: 1.5em;
-            color: var(--primary-color);
+        .location-title {
+            font-size: 2em;
+            color: var(--accent-color);
             margin-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            font-family: 'Creepster', cursive;
         }
         
-        .area-description {
-            margin-bottom: 15px;
+        .location-description {
+            margin-bottom: 20px;
             line-height: 1.6;
+            font-size: 1.1em;
         }
         
         .interaction-area {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(40, 40, 40, 0.8);
             padding: 15px;
             border: 1px dashed var(--border-color);
             border-radius: 5px;
             margin-bottom: 20px;
+            position: relative;
         }
         
         .event-title {
             font-size: 1.2em;
-            color: var(--primary-color);
+            color: var(--accent-color);
             margin-bottom: 10px;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
         }
         
         .choices {
@@ -250,125 +317,158 @@
             margin-top: 15px;
         }
         
-        .choice-btn {
+        button {
             background-color: var(--primary-color);
             color: white;
             border: none;
             padding: 10px 15px;
-            font-family: 'Courier Prime', monospace;
+            font-family: 'Special Elite', cursive;
             cursor: pointer;
             transition: all 0.3s;
             border-radius: 3px;
-        }
-        
-        .choice-btn:hover {
-            background-color: #a00000;
-            box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
-        }
-        
-        .outcome {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(255, 240, 240, 0.9);
-            border-radius: 5px;
-            animation: fadeIn 1s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .ending {
-            text-align: center;
-            padding: 30px;
-            background-color: var(--paper-color);
-            border: 2px solid var(--primary-color);
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        
-        .ending-title {
-            font-size: 1.8em;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .ending-description {
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .restart-btn {
-            background-color: var(--secondary-color);
-            color: #333;
-        }
-        
-        .restart-btn:hover {
-            background-color: #29b6f6;
-        }
-        
-        .map-area {
             position: relative;
-            cursor: pointer;
+            overflow: hidden;
         }
         
-        .map-tooltip {
+        button::before {
+            content: '';
             position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-size: 0.9em;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 10;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
         
-        .visited {
-            opacity: 0.7;
+        button:hover {
+            background-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
         
-        .current-location {
+        button:hover::before {
+            left: 100%;
+        }
+        
+        /* 规则样式 */
+        .rules-section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 1.3em;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+        }
+        
+        .rule {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background-color: rgba(40, 40, 40, 0.7);
+            border-left: 3px solid var(--primary-color);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .rule:hover {
+            background-color: rgba(60, 60, 60, 0.7);
+            transform: translateX(5px);
+        }
+        
+        .rule-number {
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--accent-color);
+            margin-right: 5px;
         }
         
-        .rules-button {
+        .warning {
+            background-color: rgba(80, 0, 0, 0.5);
+            border-left: 3px solid var(--accent-color);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+        
+        .view-all-rules {
             background-color: var(--secondary-color);
             color: #333;
-            margin-bottom: 15px;
+            margin-top: 10px;
             width: 100%;
         }
         
-        .rules-button:hover {
+        .view-all-rules:hover {
             background-color: #29b6f6;
         }
         
-        .triggered-rules-list {
-            max-height: 300px;
-            overflow-y: auto;
+        /* 规则模态框 */
+        .rules-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .rules-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .rules-content {
+            width: 80%;
+            max-width: 800px;
+            max-height: 80%;
+            background-color: rgba(26, 26, 26, 0.95);
             border: 1px solid var(--border-color);
             border-radius: 5px;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            overflow-y: auto;
         }
         
-        .triggered-rule-item {
-            padding: 5px;
-            margin-bottom: 5px;
-            border-left: 2px solid var(--secondary-color);
-            background-color: rgba(79, 195, 247, 0.1);
+        .rules-title {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Creepster', cursive;
         }
         
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--accent-color);
+        }
+        
+        /* 状态栏 */
         .status-bar {
             display: flex;
             justify-content: space-between;
             padding: 10px 20px;
-            background-color: var(--paper-color);
-            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
         
         .status-item {
@@ -384,15 +484,33 @@
         .progress-bar {
             width: 100px;
             height: 10px;
-            background-color: #e0e0e0;
+            background-color: #333;
             border-radius: 5px;
             overflow: hidden;
+            position: relative;
         }
         
         .progress-fill {
             height: 100%;
             background-color: var(--secondary-color);
             transition: width 0.3s;
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         .inventory {
@@ -404,90 +522,41 @@
         
         .inventory-item {
             padding: 5px 10px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(50, 50, 50, 0.8);
             border: 1px solid var(--border-color);
             border-radius: 3px;
             font-size: 0.9em;
+            transition: all 0.3s;
         }
         
-        .save-load-section {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .save-slots {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .save-slot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        
-        .save-slot:hover {
-            background-color: rgba(79, 195, 247, 0.1);
-        }
-        
-        .save-info {
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-            
-            .game-container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                height: 200px;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
+        .inventory-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <div id="startScreen" class="start-screen">
-        <h1 class="game-title">动物园规则怪谈</h1>
-        <div class="game-subtitle">
-            欢迎来到本市最大的动物园。我们收录世界上大部分动物，并保证为每一种动物都打造适宜它们的环境。
-            在观光游览时，请务必遵守园区规则，以确保您的安全，否则后果自负。
-        </div>
-        <div class="start-options">
-            <button class="btn" onclick="startNewGame()">开始新游戏</button>
-            <button class="btn btn-secondary" onclick="loadGameScreen()">加载存档</button>
-        </div>
-    </div>
+    <div class="red-flash"></div>
+    <div class="blood-border"></div>
     
-    <div id="gameContainer" class="game-container hidden">
-        <div class="sidebar">
-            <button class="rules-button" onclick="toggleRules()">查看完整规则</button>
-            
-            <div class="rules-section">
-                <div class="section-title">已触发的规则</div>
-                <div class="triggered-rules-list" id="triggeredRules">
-                    <div class="triggered-rule-item">暂无触发的规则</div>
+    <div class="game-container">
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 右上角小地图 -->
+            <div class="mini-map">
+                <div class="mini-map-title">动物园地图</div>
+                <div class="mini-map-content">
+                    <div class="map-area-mini" data-area="entrance">入口</div>
+                    <div class="map-area-mini" data-area="rabbit">兔子区</div>
+                    <div class="map-area-mini" data-area="lion">狮子区</div>
+                    <div class="map-area-mini" data-area="elephant">大象区</div>
+                    <div class="map-area-mini" data-area="ape">猿类区</div>
+                    <div class="map-area-mini" data-area="market">超市</div>
                 </div>
             </div>
             
-            <div class="rules-section">
-                <div class="section-title">当前状态</div>
+            <!-- 状态栏 -->
+            <div class="status-bar">
                 <div class="status-item">
                     <span class="status-label">认知稳定性:</span>
                     <div class="progress-bar">
@@ -498,6 +567,39 @@
                     <span class="status-label">已探索区域:</span>
                     <span id="exploredAreas">0/6</span>
                 </div>
+                <div class="status-item">
+                    <span class="status-label">当前位置:</span>
+                    <span id="currentLocation">动物园入口</span>
+                </div>
+            </div>
+            
+            <!-- 内容区 -->
+            <div class="content-area">
+                <h1 class="location-title" id="areaTitle">动物园入口</h1>
+                <div class="location-description" id="areaDescription">
+                    您刚刚进入动物园，手中拿着入园时发放的地图和游客守则。请选择您想参观的区域开始您的旅程。
+                    记住，遵守规则是确保您安全的关键。
+                </div>
+                
+                <div class="interaction-area" id="interactionArea">
+                    <!-- 交互内容将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 右下角设置按钮 -->
+            <div class="settings-button" onclick="toggleSettings()">⚙</div>
+        </div>
+        
+        <!-- 右侧边栏 -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-toggle" onclick="toggleSidebar()">◀</div>
+            
+            <div class="rules-section">
+                <div class="section-title">当前区域规则</div>
+                <div class="triggered-rules-list" id="currentRules">
+                    <div class="rule">暂无特定规则</div>
+                </div>
+                <button class="view-all-rules" onclick="toggleRules()">查看全部规则</button>
             </div>
             
             <div class="rules-section">
@@ -506,61 +608,36 @@
                     <div class="inventory-item">动物园地图</div>
                 </div>
             </div>
+        </div>
+    </div>
+    
+    <!-- 设置模态框 -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <button class="close-button" onclick="toggleSettings()">×</button>
+            <h2 class="settings-title">游戏设置</h2>
             
-            <div class="save-load-section">
+            <div class="rules-section">
                 <div class="section-title">存档管理</div>
                 <div class="save-slots" id="saveSlots">
                     <!-- 存档槽位将通过JavaScript动态生成 -->
                 </div>
-                <button class="btn btn-secondary" onclick="saveGame()" style="width: 100%; margin-top: 10px;">保存游戏</button>
-                <button class="btn" onclick="returnToStart()" style="width: 100%; margin-top: 10px;">返回主菜单</button>
-            </div>
-        </div>
-        
-        <div class="main-content">
-            <div class="header">
-                <div>
-                    <h1>动物园规则怪谈</h1>
-                    <div class="subtitle">当前位置: <span id="currentLocation">动物园入口</span></div>
-                </div>
-                <div>
-                    <button class="btn btn-secondary" onclick="saveGame()">快速存档</button>
-                </div>
+                <button class="btn" onclick="saveGame()" style="width: 100%; margin-top: 10px;">保存游戏</button>
             </div>
             
-            <div class="content-area" id="contentArea">
-                <div class="map-container">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f5ecd7'/%3E%3Crect x='50' y='50' width='200' height='150' fill='%23e8dfc8' stroke='%238b0000' stroke-width='2'/%3E%3Ctext x='150' y='125' text-anchor='middle' fill='%238b0000' font-family='Courier Prime' font-size='16'%3E兔子园区%3C/text%3E%3Crect x='300' y='50' width='200' height='150' fill='%23e8dfc8' stroke='%238b0000' stroke-width='2'/%3E%3Ctext x='400' y='125' text-anchor='middle' fill='%238b0000' font-family='Courier Prime' font-size='16'%3E狮子园区%3C/text%3E%3Crect x='550' y='50' width='200' height='150' fill='%23e8dfc8' stroke='%238b0000' stroke-width='2'/%3E%3Ctext x='650' y='125' text-anchor='middle' fill='%238b0000' font-family='Courier Prime' font-size='16'%3E大象园区%3C/text%3E%3Crect x='50' y='250' width='200' height='150' fill='%23e8dfc8' stroke='%238b0000' stroke-width='2'/%3E%3Ctext x='150' y='325' text-anchor='middle' fill='%238b0000' font-family='Courier Prime' font-size='16'%3E猿类园区%3C/text%3E%3Crect x='300' y='250' width='200' height='150' fill='%23e8dfc8' stroke='%238b0000' stroke-width='2'/%3E%3Ctext x='400' y='325' text-anchor='middle' fill='%238b0000' font-family='Courier Prime' font-size='16'%3E超市%3C/text%3E%3Crect x='550' y='250' width='200' height='150' fill='%23e8dfc8' stroke='%238b0000' stroke-width='2'/%3E%3Ctext x='650' y='325' text-anchor='middle' fill='%238b0000' font-family='Courier Prime' font-size='16'%3E海洋馆%3C/text%3E%3C/svg%3E" 
-                         alt="动物园地图" class="zoo-map" usemap="#zooMap">
-                    <map name="zooMap">
-                        <area shape="rect" coords="50,50,250,200" alt="兔子园区" onclick="visitArea('rabbit')">
-                        <area shape="rect" coords="300,50,500,200" alt="狮子园区" onclick="visitArea('lion')">
-                        <area shape="rect" coords="550,50,750,200" alt="大象园区" onclick="visitArea('elephant')">
-                        <area shape="rect" coords="50,250,250,400" alt="猿类园区" onclick="visitArea('ape')">
-                        <area shape="rect" coords="300,250,500,400" alt="超市" onclick="visitArea('market')">
-                        <area shape="rect" coords="550,250,750,400" alt="海洋馆" onclick="visitArea('aquarium')">
-                    </map>
-                </div>
-                
-                <div class="area-info">
-                    <div class="area-title" id="areaTitle">欢迎来到动物园</div>
-                    <div class="area-description" id="areaDescription">
-                        您刚刚进入动物园，手中拿着入园时发放的地图和游客守则。请选择您想参观的区域开始您的旅程。
-                        记住，遵守规则是确保您安全的关键。
-                    </div>
-                </div>
-                
-                <div class="interaction-area" id="interactionArea">
-                    <!-- 交互内容将通过JavaScript动态生成 -->
-                </div>
+            <div class="rules-section">
+                <div class="section-title">游戏控制</div>
+                <button class="btn" onclick="returnToStart()" style="width: 100%; margin-top: 10px;">返回主菜单</button>
+                <button class="btn" onclick="startNewGame()" style="width: 100%; margin-top: 10px;">重新开始</button>
             </div>
         </div>
     </div>
     
-    <div id="rulesOverlay" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 1000; overflow-y: auto; padding: 20px; box-sizing: border-box;">
-        <div style="max-width: 800px; margin: 20px auto; background-color: var(--paper-color); padding: 30px; border-radius: 5px; position: relative;">
-            <button style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--primary-color);" onclick="toggleRules()">×</button>
-            <h2>动物园游客守则</h2>
+    <!-- 规则模态框 -->
+    <div class="rules-modal" id="rulesModal">
+        <div class="rules-content">
+            <button class="close-button" onclick="toggleRules()">×</button>
+            <h2 class="rules-title">动物园游客守则</h2>
             
             <div class="rule">
                 <span class="rule-number">1.</span> 本园安全措施保障绝对没有问题，动物没有出逃的可能性，尤其是小型草食动物大多被关押在不可触摸的封闭性环境里。
@@ -601,26 +678,6 @@
             <div class="rule">
                 <span class="rule-number">10.</span> 如果您触犯了以上任何一条，并且发现自己正在迷路状态，和其他熟人走散，请立刻在一刻钟内找到离您最近的超市，告知那里穿蓝色工作服的售货员（注意，如果看见穿黑色工作服的售货员，不论对方对您说什么都请假装没听见），他会马上带您到狮子园区的工作通道。不要害怕，这里的狮子不会袭击您，躲在假山后面，等所有的白狮子都开始吼叫后，工作人员将会带你离开园区（请确认他是蓝色衣服），这时候你的家人朋友会在狮子园区门口等着你。在这一切之后，立刻离开动物园。
             </div>
-            
-            <div class="rule warning">
-                <span class="rule-number">11.</span> 本园只有四头白狮子。如果在第十条描述的情况中你看见了四头以上白狮子在吼叫，不要离开园区，并告知工作人员，等白狮子数量恢复四头后再离开。
-            </div>
-            
-            <div class="rule">
-                <span class="rule-number">12.</span> 可以给12岁及以下的孩子购买任何动物周边玩具，包括兔子；13-17岁的孩子购买兔子玩偶后，请在一个月内丢弃；18岁及以上的人群不可以购买兔子玩具。
-            </div>
-            
-            <div class="rule">
-                <span class="rule-number">13.</span> 如果看见有戴兔子耳饰的人跟随人流进入大象园区，必须放弃参观该园区。如果违反本条，本园不对您的安全负责，且无法给您提供解决方案。
-            </div>
-            
-            <div class="rule warning">
-                <span class="rule-number">14.</span> 狮子园区是安全的。如果您遭遇任何您无法解决的危险事件，也无法求助，请立刻、不择手段、尽一切可能前往狮子园区。
-            </div>
-            
-            <div class="rule">
-                <span class="rule-number">15.</span> 警惕和您走散过一次以上的朋友，尤其是他们反复劝你前往海洋馆或大象园区时。
-            </div>
         </div>
     </div>
 
@@ -636,93 +693,65 @@
             hasDashedLine: false,
             endings: [],
             currentEvent: null,
-            gameStarted: false
+            gameStarted: false,
+            sidebarCollapsed: false
         };
 
         // 区域信息
         const areas = {
             entrance: {
                 title: '动物园入口',
-                description: '您刚刚进入动物园，手中拿着入园时发放的地图和游客守则。请选择您想参观的区域开始您的旅程。记住，遵守规则是确保您安全的关键。'
+                description: '您刚刚进入动物园，手中拿着入园时发放的地图和游客守则。请选择您想参观的区域开始您的旅程。记住，遵守规则是确保您安全的关键。',
+                rules: []
             },
             rabbit: {
                 title: '兔子园区',
-                description: '这里展示着各种可爱的兔子。园区内有许多灌木和树荫，兔子们在围栏内安静地活动。'
+                description: '这里展示着各种可爱的兔子。园区内有许多灌木和树荫，兔子们在围栏内安静地活动。',
+                rules: [
+                    "不要独自停留在兔子园区的树荫下。",
+                    "兔子不会发出笑声。如果您在参观兔子园区时听见明显不来自游客方向的笑声，离开园区前，请把地图上虚线处撕下来握住，在彻底离开动物园时不要离手。"
+                ]
             },
             lion: {
                 title: '狮子园区',
-                description: '雄伟的白狮子在园区内悠闲地踱步。园区中央有一个假山，是狮子们休息的地方。'
+                description: '雄伟的白狮子在园区内悠闲地踱步。园区中央有一个假山，是狮子们休息的地方。',
+                rules: [
+                    "本园只有四头白狮子。如果在第十条描述的情况中你看见了四头以上白狮子在吼叫，不要离开园区，并告知工作人员，等白狮子数量恢复四头后再离开。",
+                    "狮子园区是安全的。如果您遭遇任何您无法解决的危险事件，也无法求助，请立刻、不择手段、尽一切可能前往狮子园区。"
+                ]
             },
             elephant: {
                 title: '大象园区',
-                description: '庞大的大象在园区内活动。园区边缘有标示牌，描述了大象的特征和习性。'
+                description: '庞大的大象在园区内活动。园区边缘有标示牌，描述了大象的特征和习性。',
+                rules: [
+                    "大象是一种体型巨大、有着扇子一般的耳朵、鼻子很长、腿粗得像柱子的生物，而且不是白色的。请确保你在大象园区看见的是且只有大象。",
+                    "如果看见有戴兔子耳饰的人跟随人流进入大象园区，必须放弃参观该园区。如果违反本条，本园不对您的安全负责，且无法给您提供解决方案。"
+                ]
             },
             ape: {
                 title: '猿类园区',
-                description: '聪明的猿类在园区内活动。这里只有一条街道，展示着各种猿类动物。'
+                description: '聪明的猿类在园区内活动。这里只有一条街道，展示着各种猿类动物。',
+                rules: [
+                    "猿类的园区只有一条街道，且只展示猿类动物。如果您发现了两条街道，且展示动物包括兔子，请选择左边那条，并尽可能快速地结束对该园区的参观。"
+                ]
             },
             market: {
                 title: '超市',
-                description: '园区内的超市提供各种饮料和零食。货架上摆满了商品，店员穿着蓝色工作服。'
+                description: '园区内的超市提供各种饮料和零食。货架上摆满了商品，店员穿着蓝色工作服。',
+                rules: [
+                    "动物园的超市不提供\"兔子血\"，如果您在货架上看见了，请不要购买。",
+                    "如果您触犯了以上任何一条，并且发现自己正在迷路状态，和其他熟人走散，请立刻在一刻钟内找到离您最近的超市，告知那里穿蓝色工作服的售货员。"
+                ]
             },
             aquarium: {
                 title: '海洋馆',
-                description: '一个不应该存在的建筑。里面展示着各种海洋生物，但似乎有些异常。'
+                description: '一个不应该存在的建筑。里面展示着各种海洋生物，但似乎有些异常。',
+                rules: [
+                    "本园没有海洋馆。如果有工作人员向您贩卖海洋馆的票，拒绝他们。",
+                    "如果您已经看见了海洋馆，立刻离开，并打通地图上标记的电话进行告知。",
+                    "海洋馆内部告示：不要在有人时进入海洋馆。如果你进来后有工作人员接待了你，在看完这条告示后请立刻找借口离开。"
+                ]
             }
-        };
-
-        // 事件系统
-        const events = {
-            rabbit: [
-                {
-                    title: '逃跑的兔子',
-                    description: '您发现一只兔子从围栏中逃了出来，正在路边吃草。',
-                    choices: [
-                        { text: '远离并报告工作人员', outcome: '您按照规则远离了兔子并找到了工作人员。工作人员迅速处理了情况。', rules: [1], stability: 0 },
-                        { text: '靠近观察', outcome: '您靠近了兔子，它突然停止吃草，用红色的眼睛盯着您。您感到一阵不安。', rules: [1], stability: -10 },
-                        { text: '尝试触摸', outcome: '当您伸手想要触摸兔子时，它突然高速向您冲来！您慌忙后退，心跳加速。', rules: [1], stability: -20 }
-                    ]
-                },
-                {
-                    title: '树荫下的异常',
-                    description: '您在兔子园区的树荫下休息时，感觉周围变得异常安静。',
-                    choices: [
-                        { text: '立即离开', outcome: '您迅速离开了树荫区域，周围的声音恢复正常。', rules: [5], stability: 0 },
-                        { text: '继续停留', outcome: '您继续待在树荫下，感觉周围的阴影似乎在移动。您开始感到不安。', rules: [5], stability: -15 },
-                        { text: '呼叫工作人员', outcome: '您大声呼叫工作人员，一名蓝衣员工迅速赶来，引导您离开了该区域。', rules: [5], stability: 0 }
-                    ]
-                },
-                {
-                    title: '诡异的笑声',
-                    description: '您在参观兔子园区时，听到了明显不来自游客方向的笑声。',
-                    choices: [
-                        { text: '撕下地图虚线紧握', outcome: '您按照规则撕下地图虚线部分紧紧握住。笑声逐渐远去，您安全离开了园区。', rules: [9], stability: 0, addItem: 'dashedLine' },
-                        { text: '装作没听见', outcome: '您装作没听见继续参观，但笑声似乎越来越近，您感到一阵寒意。', rules: [9], stability: -10 },
-                        { text: '寻找声源', outcome: '您试图寻找笑声的来源，但只看到空荡荡的树丛。笑声突然在您身后响起！', rules: [9], stability: -20 }
-                    ]
-                }
-            ],
-            lion: [
-                {
-                    title: '白狮子数量异常',
-                    description: '您注意到白狮子的数量似乎超过了四头。',
-                    choices: [
-                        { text: '立即报告工作人员', outcome: '您立即向蓝衣员工报告了情况。员工点点头，迅速前往处理。', rules: [11], stability: 0 },
-                        { text: '继续观察', outcome: '您继续观察白狮子，发现它们的眼睛似乎有些异常。您感到不安。', rules: [11], stability: -10 },
-                        { text: '装作没看见', outcome: '您装作没看见异常，但感觉有视线在背后盯着您。', rules: [11], stability: -15 }
-                    ]
-                },
-                {
-                    title: '狮子吼叫',
-                    description: '所有的白狮子突然开始齐声吼叫。',
-                    choices: [
-                        { text: '躲在假山后等待', outcome: '您按照规则躲在假山后面，等待吼叫结束。不久后，一名蓝衣员工前来引导您离开。', rules: [10], stability: 0 },
-                        { text: '立即逃离', outcome: '您惊慌地逃离狮子园区，但感觉有什么东西在跟着您。', rules: [10], stability: -15 },
-                        { text: '向蓝衣员工求助', outcome: '您找到一名蓝衣员工，他带您前往安全区域。', rules: [10], stability: 0 }
-                    ]
-                }
-            ]
-            // 其他区域的事件类似，为简洁起见省略...
         };
 
         // 初始化游戏
@@ -737,26 +766,34 @@
                 hasDashedLine: false,
                 endings: [],
                 currentEvent: null,
-                gameStarted: true
+                gameStarted: true,
+                sidebarCollapsed: false
             };
             
-            document.getElementById('startScreen').classList.add('hidden');
-            document.getElementById('gameContainer').classList.remove('hidden');
             updateGameDisplay();
             updateSaveSlots();
         }
 
-        // 加载游戏界面
-        function loadGameScreen() {
-            updateSaveSlots();
-            document.getElementById('startScreen').classList.add('hidden');
-            document.getElementById('gameContainer').classList.remove('hidden');
+        // 切换侧边栏
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.sidebar-toggle');
+            
+            gameState.sidebarCollapsed = !gameState.sidebarCollapsed;
+            sidebar.classList.toggle('collapsed');
+            toggle.textContent = gameState.sidebarCollapsed ? '▶' : '◀';
         }
 
-        // 返回开始界面
-        function returnToStart() {
-            document.getElementById('gameContainer').classList.add('hidden');
-            document.getElementById('startScreen').classList.remove('hidden');
+        // 切换设置模态框
+        function toggleSettings() {
+            const settingsModal = document.getElementById('settingsModal');
+            settingsModal.classList.toggle('active');
+        }
+
+        // 切换规则模态框
+        function toggleRules() {
+            const rulesModal = document.getElementById('rulesModal');
+            rulesModal.classList.toggle('active');
         }
 
         // 访问区域
@@ -766,33 +803,60 @@
             }
             
             gameState.currentArea = areaId;
-            document.getElementById('currentLocation').textContent = areas[areaId].title;
-            
             updateGameDisplay();
             
             // 随机触发事件
-            if (events[areaId] && Math.random() > 0.3) {
-                const eventIndex = Math.floor(Math.random() * events[areaId].length);
-                triggerEvent(areaId, eventIndex);
+            if (Math.random() > 0.5) {
+                triggerRandomEvent(areaId);
             }
         }
 
-        // 触发事件
-        function triggerEvent(areaId, eventIndex) {
-            const event = events[areaId][eventIndex];
-            gameState.currentEvent = event;
+        // 触发随机事件
+        function triggerRandomEvent(areaId) {
+            const eventTemplates = {
+                rabbit: [
+                    {
+                        title: '逃跑的兔子',
+                        description: '您发现一只兔子从围栏中逃了出来，正在路边吃草。',
+                        choices: [
+                            { text: '远离并报告工作人员', outcome: '您按照规则远离了兔子并找到了工作人员。工作人员迅速处理了情况。', rules: [1], stability: 0 },
+                            { text: '靠近观察', outcome: '您靠近了兔子，它突然停止吃草，用红色的眼睛盯着您。您感到一阵不安。', rules: [1], stability: -10 },
+                            { text: '尝试触摸', outcome: '当您伸手想要触摸兔子时，它突然高速向您冲来！您慌忙后退，心跳加速。', rules: [1], stability: -20 }
+                        ]
+                    }
+                ],
+                lion: [
+                    {
+                        title: '白狮子数量异常',
+                        description: '您注意到白狮子的数量似乎超过了四头。',
+                        choices: [
+                            { text: '立即报告工作人员', outcome: '您立即向蓝衣员工报告了情况。员工点点头，迅速前往处理。', rules: [11], stability: 0 },
+                            { text: '继续观察', outcome: '您继续观察白狮子，发现它们的眼睛似乎有些异常。您感到不安。', rules: [11], stability: -10 },
+                            { text: '装作没看见', outcome: '您装作没看见异常，但感觉有视线在背后盯着您。', rules: [11], stability: -15 }
+                        ]
+                    }
+                ]
+                // 其他区域的事件类似...
+            };
             
-            const interactionArea = document.getElementById('interactionArea');
-            interactionArea.innerHTML = `
-                <div class="event-title">${event.title}</div>
-                <div class="area-description">${event.description}</div>
-                <div class="choices">
-                    ${event.choices.map((choice, index) => 
-                        `<button class="choice-btn" onclick="makeChoice(${index})">${choice.text}</button>`
-                    ).join('')}
-                </div>
-                <div id="eventOutcome" class="outcome"></div>
-            `;
+            const events = eventTemplates[areaId] || [];
+            if (events.length > 0) {
+                const eventIndex = Math.floor(Math.random() * events.length);
+                const event = events[eventIndex];
+                gameState.currentEvent = event;
+                
+                const interactionArea = document.getElementById('interactionArea');
+                interactionArea.innerHTML = `
+                    <div class="event-title">${event.title}</div>
+                    <div class="area-description">${event.description}</div>
+                    <div class="choices">
+                        ${event.choices.map((choice, index) => 
+                            `<button class="choice-btn" onclick="makeChoice(${index})">${choice.text}</button>`
+                        ).join('')}
+                    </div>
+                    <div id="eventOutcome" class="outcome"></div>
+                `;
+            }
         }
 
         // 做出选择
@@ -812,106 +876,25 @@
                 }
             });
             
-            // 添加物品
-            if (choice.addItem && !gameState.inventory.includes(choice.addItem)) {
-                gameState.inventory.push(choice.addItem);
-                if (choice.addItem === 'dashedLine') {
-                    gameState.hasDashedLine = true;
-                }
-            }
-            
             // 显示结果
             const outcomeElement = document.getElementById('eventOutcome');
             outcomeElement.innerHTML = `<p>${choice.outcome}</p>`;
             outcomeElement.style.display = 'block';
             
-            // 检查是否触发结局
-            checkForEnding();
-            
             // 更新显示
             updateGameDisplay();
         }
 
-        // 检查是否触发结局
-        function checkForEnding() {
-            // 这里可以根据游戏状态检查是否触发各种结局
-            // 例如：认知稳定性过低、特定物品组合、特定规则触发等
-            
-            if (gameState.cognitiveStability <= 0) {
-                triggerEnding('G'); // 变成兔子
-            }
-            
-            // 其他结局条件...
-        }
-
-        // 触发结局
-        function triggerEnding(endingCode) {
-            const endings = {
-                'A': {
-                    title: '结局 A - 安全离开',
-                    description: '您遵循了所有规则，顺利参观了动物园并安全离开。您没有看到任何异常，度过了一个愉快的下午。'
-                },
-                'B': {
-                    title: '结局 B - 与人群离开',
-                    description: '虽然您看到了一些奇怪的东西，但始终和熟人朋友在一起，最终跟随人群安全离开了动物园。'
-                },
-                'C': {
-                    title: '结局 C - 被净化离开',
-                    description: '您触犯了规则并迷路，但及时向正确的员工求助。白狮子的吼叫驱逐了"它"并净化了您被扭曲的认知，之后您安全离园。'
-                },
-                'D': {
-                    title: '结局 D - 困在海洋馆',
-                    description: '您触犯规定且迷路，未及时求助，独自发现海洋馆并进入休息。现在您被困在里面，一直在想办法逃离。'
-                },
-                'E': {
-                    title: '结局 E - 成为黑衣员工',
-                    description: '您受到严重污染，发现海洋馆门口的告示并换上黑衣服。您按照告示行动，从猿猴区右侧街道离开，但去向不明。'
-                },
-                'F': {
-                    title: '结局 F - 困在动物园',
-                    description: '您成为黑衣员工但立场不坚定，用掉了虚线却没有选择正确的出口。现在您困在动物园里，试图抢走别人的虚线。'
-                },
-                'G': {
-                    title: '结局 G - 变成兔子',
-                    description: '您的认知完全被扭曲，最终变成了一只兔子。您被"它"吃掉，剩余的部分被做成"兔子血"。'
-                },
-                'H': {
-                    title: '结局 H - 被白狮子吃掉',
-                    description: '您变成兔子后，被白狮子发现并吃掉。至少这样结束了您的痛苦。'
-                },
-                'I': {
-                    title: '结局 I - 被收容',
-                    description: '您变成兔子后被工作人员发现并收容。您将在动物园中度过余生，成为展示的一部分。'
-                }
-            };
-            
-            const ending = endings[endingCode];
-            if (ending && !gameState.endings.includes(endingCode)) {
-                gameState.endings.push(endingCode);
-                
-                const contentArea = document.getElementById('contentArea');
-                contentArea.innerHTML = `
-                    <div class="ending">
-                        <div class="ending-title">${ending.title}</div>
-                        <div class="ending-description">${ending.description}</div>
-                        <button class="btn restart-btn" onclick="returnToStart()">返回主菜单</button>
-                        <button class="btn" onclick="startNewGame()" style="margin-left: 10px;">重新开始</button>
-                    </div>
-                `;
-                
-                // 自动保存游戏
-                saveGame();
-            }
-        }
-
         // 更新游戏显示
         function updateGameDisplay() {
+            const area = areas[gameState.currentArea];
+            
             // 更新当前位置
-            document.getElementById('currentLocation').textContent = areas[gameState.currentArea].title;
+            document.getElementById('currentLocation').textContent = area.title;
             
             // 更新区域信息
-            document.getElementById('areaTitle').textContent = areas[gameState.currentArea].title;
-            document.getElementById('areaDescription').textContent = areas[gameState.currentArea].description;
+            document.getElementById('areaTitle').textContent = area.title;
+            document.getElementById('areaDescription').textContent = area.description;
             
             // 更新认知稳定性
             document.getElementById('cognitionBar').style.width = `${gameState.cognitiveStability}%`;
@@ -919,13 +902,13 @@
             // 更新已探索区域
             document.getElementById('exploredAreas').textContent = `${gameState.visitedAreas.length - 1}/6`;
             
-            // 更新触发的规则
-            const triggeredRulesElement = document.getElementById('triggeredRules');
-            if (gameState.triggeredRules.length === 0) {
-                triggeredRulesElement.innerHTML = '<div class="triggered-rule-item">暂无触发的规则</div>';
+            // 更新当前区域规则
+            const currentRulesElement = document.getElementById('currentRules');
+            if (area.rules.length === 0) {
+                currentRulesElement.innerHTML = '<div class="rule">暂无特定规则</div>';
             } else {
-                triggeredRulesElement.innerHTML = gameState.triggeredRules.map(rule => 
-                    `<div class="triggered-rule-item">规则 ${rule}: ${getRuleDescription(rule)}</div>`
+                currentRulesElement.innerHTML = area.rules.map(rule => 
+                    `<div class="rule">${rule}</div>`
                 ).join('');
             }
             
@@ -934,29 +917,31 @@
             inventoryElement.innerHTML = gameState.inventory.map(item => 
                 `<div class="inventory-item">${getItemName(item)}</div>`
             ).join('');
+            
+            // 更新小地图
+            updateMiniMap();
         }
 
-        // 获取规则描述
-        function getRuleDescription(ruleNumber) {
-            const ruleDescriptions = {
-                1: '看到逃跑的兔子要远离并报告',
-                2: '猿类园区出现两条街道要走左边',
-                3: '确保大象园区只有真正的大象',
-                4: '超市不提供"兔子血"不要购买',
-                5: '不要独自停留在兔子园区的树荫下',
-                6: '本园没有海洋馆，拒绝门票',
-                7: '如果看见海洋馆要离开并报告',
-                8: '不要投喂兔子',
-                9: '听到笑声要撕下地图虚线握住',
-                10: '触犯规则迷路时要找蓝衣员工',
-                11: '只有四头白狮子，发现异常要报告',
-                12: '年龄限制购买兔子周边',
-                13: '看到戴兔子耳饰的人进入大象园区要放弃参观',
-                14: '狮子园区是安全的',
-                15: '警惕走散过的朋友'
-            };
-            
-            return ruleDescriptions[ruleNumber] || '未知规则';
+        // 更新小地图
+        function updateMiniMap() {
+            const miniMapAreas = document.querySelectorAll('.map-area-mini');
+            miniMapAreas.forEach(area => {
+                const areaId = area.getAttribute('data-area');
+                area.classList.remove('current');
+                
+                if (areaId === gameState.currentArea) {
+                    area.classList.add('current');
+                }
+                
+                if (gameState.visitedAreas.includes(areaId)) {
+                    area.style.opacity = '1';
+                } else {
+                    area.style.opacity = '0.5';
+                }
+                
+                // 添加点击事件
+                area.onclick = () => visitArea(areaId);
+            });
         }
 
         // 获取物品名称
@@ -969,12 +954,6 @@
             return itemNames[item] || item;
         }
 
-        // 切换规则显示
-        function toggleRules() {
-            const rulesOverlay = document.getElementById('rulesOverlay');
-            rulesOverlay.classList.toggle('hidden');
-        }
-
         // 保存游戏
         function saveGame() {
             const saveData = {
@@ -982,23 +961,16 @@
                 saveTime: new Date().toLocaleString()
             };
             
-            // 获取现有存档
             let saves = JSON.parse(localStorage.getItem('zooRuleSaves') || '[]');
             
-            // 限制存档数量为3个
             if (saves.length >= 3) {
-                saves.shift(); // 移除最旧的存档
+                saves.shift();
             }
             
-            // 添加新存档
             saves.push(saveData);
-            
-            // 保存到本地存储
             localStorage.setItem('zooRuleSaves', JSON.stringify(saves));
             
-            // 更新存档显示
             updateSaveSlots();
-            
             alert('游戏已保存！');
         }
 
@@ -1008,11 +980,8 @@
             if (saves.length > saveIndex) {
                 gameState = saves[saveIndex];
                 gameState.gameStarted = true;
-                
-                document.getElementById('startScreen').classList.add('hidden');
-                document.getElementById('gameContainer').classList.remove('hidden');
-                
                 updateGameDisplay();
+                toggleSettings();
             }
         }
 
@@ -1022,19 +991,34 @@
             const saves = JSON.parse(localStorage.getItem('zooRuleSaves') || '[]');
             
             if (saves.length === 0) {
-                saveSlotsElement.innerHTML = '<div class="save-slot">暂无存档</div>';
+                saveSlotsElement.innerHTML = '<div class="rule">暂无存档</div>';
             } else {
                 saveSlotsElement.innerHTML = saves.map((save, index) => `
-                    <div class="save-slot" onclick="loadGame(${index})">
-                        <div>存档 ${index + 1}</div>
-                        <div class="save-info">${save.saveTime}</div>
+                    <div class="rule" onclick="loadGame(${index})" style="cursor: pointer;">
+                        <span class="rule-number">${index + 1}.</span> ${save.saveTime}
                     </div>
                 `).join('');
             }
         }
 
-        // 初始化存档显示
-        updateSaveSlots();
+        // 返回开始界面
+        function returnToStart() {
+            // 在实际实现中，这里应该返回开始界面
+            alert('返回主菜单功能');
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            startNewGame();
+            updateSaveSlots();
+            
+            // 为小地图区域添加点击事件
+            const miniMapAreas = document.querySelectorAll('.map-area-mini');
+            miniMapAreas.forEach(area => {
+                const areaId = area.getAttribute('data-area');
+                area.onclick = () => visitArea(areaId);
+            });
+        });
     </script>
 </body>
 </html>
